@@ -1,0 +1,54 @@
+[00:00:01.125] Server  LOG     ✓ Ready in 862ms
+[00:00:07.509] Server  LOG     ○ Compiling / ...
+[00:00:10.793] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:18.514] Browser LOG     クリック: y座標781にかかっている棒の数: 15
+[00:00:49.329] Browser LOG     再開
+[00:00:52.221] Browser LOG     クリック: y座標814にかかっている棒の数: 11
+[00:03:33.034] Server  LOG     ✓ Compiled in 275ms
+[00:03:42.275] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:55.056] Server  LOG     ✓ Compiled in 53ms
+[00:04:04.994] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:09.428] Browser LOG     Hand detection started
+[00:04:09.428] Browser LOG     Hand swipe detector initialized
+[00:04:26.055] Server  LOG     ✓ Compiled in 14ms
+[00:04:28.182] Browser LOG     Hand swipe detector initialized
+[00:05:02.400] Browser WARN    I0000 00:00:1767195115.965000       1 gl_context_webgl.cc:151] Successfully created a WebGL context with major version 3 and handle 3
+[00:05:02.400] Browser WARN    I0000 00:00:1767195116.024000       1 gl_context.cc:359] GL version: 3.0 (OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium)))
+[00:05:02.400] Browser WARN    W0000 00:00:1767195116.029000       1 gl_context.cc:1000] OpenGL error checking is disabled
+[00:05:08.493] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:10.378] Browser LOG     Hand detection started
+[00:05:10.378] Browser LOG     Hand swipe detector initialized
+[00:05:16.253] Browser WARN    I0000 00:00:1767195145.658000       1 gl_context_webgl.cc:151] Successfully created a WebGL context with major version 3 and handle 3
+[00:05:16.254] Browser WARN    I0000 00:00:1767195145.683000       1 gl_context.cc:359] GL version: 3.0 (OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium)))
+[00:05:16.254] Browser WARN    W0000 00:00:1767195145.685000       1 gl_context.cc:1000] OpenGL error checking is disabled
+[00:05:37.298] Browser LOG     Swipe down detected! {"duration":471,"endY":0.6527671366930008,"palmX":0.3667522072792053,"startY":0.4182179793715477}
+[00:05:37.298] Browser LOG     手の振り下ろし: y座標558にかかっている棒の数: 15
+[00:05:38.619] Browser LOG     Swipe down detected! {"duration":487,"endY":0.9792753159999847,"palmX":0.20679358392953873,"startY":0.8069505393505096}
+[00:05:38.619] Browser LOG     手の振り下ろし: y座標837にかかっている棒の数: 13
+[00:05:57.603] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:58.828] Browser LOG     Hand detection started
+[00:05:58.828] Browser LOG     Hand swipe detector initialized
+[00:06:04.855] Browser WARN    I0000 00:00:1767195194.836000       1 gl_context_webgl.cc:151] Successfully created a WebGL context with major version 3 and handle 3
+[00:06:04.855] Browser WARN    I0000 00:00:1767195194.861000       1 gl_context.cc:359] GL version: 3.0 (OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium)))
+[00:06:04.855] Browser WARN    W0000 00:00:1767195194.865000       1 gl_context.cc:1000] OpenGL error checking is disabled
+[00:06:35.876] Browser LOG     Swipe down detected! {"duration":256,"endY":0.7619587779045105,"palmX":0.31728726625442505,"startY":0.5056684166193008}
+[00:06:35.876] Browser LOG     手の振り下ろし: y座標651にかかっている棒の数: 9
+[00:06:37.129] Browser LOG     Swipe down detected! {"duration":460,"endY":0.4971487820148468,"palmX":0.3405412882566452,"startY":0.31709278374910355}
+[00:06:37.129] Browser LOG     手の振り下ろし: y座標425にかかっている棒の数: 13
+[00:06:37.424] Browser LOG     Swipe down detected! {"duration":224,"endY":0.8274315893650055,"palmX":0.27759385854005814,"startY":0.5960098206996918}
+[00:06:37.424] Browser LOG     手の振り下ろし: y座標707にかかっている棒の数: 10
+[00:09:03.471] Server  LOG     ✓ Compiled in 22ms
+[00:09:03.979] Server  LOG     ✓ Compiled in 13ms
+[00:09:15.735] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:16.097] Browser LOG     Hand detection started
+[00:09:16.097] Browser LOG     Hand swipe detector initialized
+[00:09:19.947] Browser WARN    I0000 00:00:1767195390.648000       1 gl_context_webgl.cc:151] Successfully created a WebGL context with major version 3 and handle 3
+[00:09:19.947] Browser WARN    I0000 00:00:1767195390.659000       1 gl_context.cc:359] GL version: 3.0 (OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium)))
+[00:09:19.947] Browser WARN    W0000 00:00:1767195390.660000       1 gl_context.cc:1000] OpenGL error checking is disabled
+[00:09:25.124] Browser LOG     Swipe right detected! {"duration":497,"endX":0.4829414337873459,"palmY":0.5035971701145172,"startX":0.6828089356422424}
+[00:09:25.124] Browser LOG     手のスワイプ: y座標431にかかっている棒の数: 10
+[00:09:36.580] Browser LOG     再開
+[00:09:38.194] Browser LOG     クリック: y座標429にかかっている棒の数: 14
+[00:09:41.398] Browser LOG     再開
+[00:09:44.674] Browser LOG     Swipe right detected! {"duration":455,"endX":0.5811412036418915,"palmY":0.5689502954483032,"startX":0.7398391664028168}
+[00:09:44.674] Browser LOG     手のスワイプ: y座標486にかかっている棒の数: 14
