@@ -25,9 +25,13 @@ const sketch = (p: p5) => {
   let redBarX = 0 // 赤い棒の現在のX座標
   let isAnimating = false // アニメーション中かどうか
   let showNumber = false // 数字を表示するかどうか
+  let showNumberStartTime = 0 // 数字表示開始時刻
+  const SHOW_NUMBER_DURATION = 5000 // 数字を表示する時間（5秒）
   const RED_BAR_HEIGHT = 10 // 赤い棒の高さ
   const RED_BAR_WIDTH = 300 // 赤い棒の幅
   const ANIMATION_SPEED = 30 // 赤い棒の移動速度（ピクセル/フレーム）
+  let isCameraReady = false // カメラが準備完了したかどうか
+  let loadingDots = 0 // ローディングアニメーション用
 
   p.setup = () => {
     p.createCanvas(p.windowWidth, p.windowHeight)
@@ -35,6 +39,7 @@ const sketch = (p: p5) => {
     // 手の左右スワイプ検知を開始
     handSwipeDetector.start().then(() => {
       console.log('Hand swipe detector initialized')
+      isCameraReady = true
     })
 
     // 左から右へのスワイプ検知時のコールバックを登録
@@ -45,14 +50,14 @@ const sketch = (p: p5) => {
 
   // 手の左から右スワイプ時の処理（クリックと同じキルモーション）
   const handleSwipeRight = (event: SwipeEvent) => {
-    if (showNumber) {
-      // すでに数字が表示されている場合は、リセットして再開
-      showNumber = false
-      isPaused = false
-      console.log('再開（手のスワイプ）')
-    } else {
-      // Y座標を画面座標に変換
-      const screenY = event.palmY * p.height
+    // 数字表示中またはアニメーション中は無視
+    if (showNumber || isAnimating) {
+      console.log('アニメーション中または数字表示中のためスワイプを無視')
+      return
+    }
+
+    // Y座標を画面座標に変換
+    const screenY = event.palmY * p.height
 
       // スワイプ位置にかかっている棒の数を計算
       const count = countBarsAtY(screenY)
@@ -69,11 +74,16 @@ const sketch = (p: p5) => {
       isAnimating = true
 
       console.log(`手のスワイプ: y座標${Math.round(screenY)}にかかっている棒の数: ${count}`)
-    }
   }
 
   p.draw = () => {
     p.background(220)
+
+    // カメラ読み込み中はローディング画面を表示
+    if (!isCameraReady) {
+      drawLoadingScreen()
+      return
+    }
 
     if (!isPaused && !isAnimating) {
       // 1秒に一回、新しい棒を生成
@@ -136,15 +146,28 @@ const sketch = (p: p5) => {
       if (redBarX >= p.width) {
         isAnimating = false
         showNumber = true
+        showNumberStartTime = p.millis() // 数字表示開始時刻を記録
       }
     }
 
     // 数字を表示
     if (showNumber) {
-      p.fill(255, 0, 0)
-      p.textAlign(p.CENTER, p.CENTER)
-      p.textSize(120)
-      p.text(pausedCount.toString(), p.width / 2, p.height / 2)
+      // 5秒経過したら自動で再開
+      if (p.millis() - showNumberStartTime >= SHOW_NUMBER_DURATION) {
+        showNumber = false
+        isPaused = false
+        console.log('5秒経過: 自動で再開')
+      } else {
+        p.fill(255, 0, 0)
+        p.textAlign(p.CENTER, p.CENTER)
+        p.textSize(120)
+        p.text(pausedCount.toString(), p.width / 2, p.height / 2)
+        
+        // 残り時間を表示
+        const remainingTime = Math.ceil((SHOW_NUMBER_DURATION - (p.millis() - showNumberStartTime)) / 1000)
+        p.textSize(30)
+        p.text(`${remainingTime}秒後に再開...`, p.width / 2, p.height / 2 + 80)
+      }
     }
 
     // デバッグ: 手の検知状態を表示
@@ -195,6 +218,45 @@ const sketch = (p: p5) => {
       }
     }
     return count
+  }
+
+  // ローディング画面を描画
+  const drawLoadingScreen = () => {
+    // 背景を少し暗く
+    p.background(50)
+
+    // ローディングアニメーション（回転する円）
+    p.push()
+    p.translate(p.width / 2, p.height / 2 - 50)
+    
+    const time = p.millis() / 1000
+    const numDots = 8
+    for (let i = 0; i < numDots; i++) {
+      const angle = (i / numDots) * p.TWO_PI + time * 2
+      const x = Math.cos(angle) * 40
+      const y = Math.sin(angle) * 40
+      const alpha = ((i / numDots + time) % 1) * 255
+      p.fill(255, 255, 255, alpha)
+      p.noStroke()
+      p.ellipse(x, y, 15, 15)
+    }
+    p.pop()
+
+    // テキスト
+    p.fill(255)
+    p.textAlign(p.CENTER, p.CENTER)
+    p.textSize(32)
+    
+    // ドットアニメーション
+    if (p.frameCount % 20 === 0) {
+      loadingDots = (loadingDots + 1) % 4
+    }
+    const dots = '.'.repeat(loadingDots)
+    p.text(`カメラを読み込み中${dots}`, p.width / 2, p.height / 2 + 50)
+
+    p.textSize(18)
+    p.fill(200)
+    p.text('カメラへのアクセスを許可してください', p.width / 2, p.height / 2 + 90)
   }
 
   // クリック時の機能

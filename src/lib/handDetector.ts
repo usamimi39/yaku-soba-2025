@@ -84,12 +84,14 @@ export class HandSwipeDetector {
     palmX: number
     fingerStates: boolean[]
     isDetecting: boolean
+    isLoading: boolean
   } = {
     isOpenHand: false,
     palmY: 0,
     palmX: 0,
     fingerStates: [false, false, false, false, false],
-    isDetecting: false
+    isDetecting: false,
+    isLoading: false
   }
 
   constructor(config?: Partial<SwipeConfig>) {
@@ -104,6 +106,9 @@ export class HandSwipeDetector {
   async start(): Promise<void> {
     if (this.isRunning) return
 
+    // ローディング開始
+    this.debugInfo.isLoading = true
+
     // グローバルにMediaPipeがロードされているか確認
     const globalWindow = window as unknown as {
       Hands?: new (config: { locateFile: (file: string) => string }) => MediaPipeHands
@@ -115,6 +120,7 @@ export class HandSwipeDetector {
 
     if (!globalWindow.Hands || !globalWindow.Camera) {
       console.error('MediaPipe not loaded. Please include the MediaPipe scripts.')
+      this.debugInfo.isLoading = false
       return
     }
 
@@ -153,6 +159,7 @@ export class HandSwipeDetector {
     this.camera.start()
     this.isRunning = true
     this.debugInfo.isDetecting = true
+    this.debugInfo.isLoading = false
     console.log('Hand detection started')
   }
 
