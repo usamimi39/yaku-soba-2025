@@ -1,7 +1,7 @@
 "use client";
 
 import P5Canvas from "@/components/P5Canvas";
-import { sampleSketch } from "@/sketches/sampleSketch";
+import sampleSketch from "@/sketches/sampleSketch";
 
 export default function Home() {
   return (
